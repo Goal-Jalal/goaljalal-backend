@@ -52,14 +52,6 @@ public class KakaoOauthService {
         return new TokenResponse(accessToken, refreshToken);
     }
 
-    private void saveOrUpdateRefreshToken(Member member, String refreshToken) {
-        tokenRepository.findByMember(member)
-            .ifPresentOrElse(
-                token -> token.changeToken(refreshToken),
-                () -> tokenRepository.save(new Token(member, refreshToken))
-            );
-    }
-
     private OauthMember createOauthMember(final String accessToken) {
         ResponseEntity<String> response = requestOauthMemberInfo(accessToken);
         OauthMember oauthMember = parsingOauthMember(response);
@@ -110,5 +102,13 @@ public class KakaoOauthService {
                 exception);
             throw new IllegalArgumentException(exception);
         }
+    }
+
+    private void saveOrUpdateRefreshToken(Member member, String refreshToken) {
+        tokenRepository.findByMember(member)
+            .ifPresentOrElse(
+                token -> token.changeToken(refreshToken),
+                () -> tokenRepository.save(new Token(member, refreshToken))
+            );
     }
 }
