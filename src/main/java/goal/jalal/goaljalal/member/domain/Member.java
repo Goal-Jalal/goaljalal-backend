@@ -2,7 +2,6 @@ package goal.jalal.goaljalal.member.domain;
 
 import goal.jalal.goaljalal.global.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.vo.BirthDate;
-import goal.jalal.goaljalal.member.domain.vo.Email;
 import goal.jalal.goaljalal.member.domain.vo.Name;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -36,14 +35,11 @@ public class Member extends BaseEntity {
     private MatchHistory matchHistory;
 
 
-    @Column(name = "kakaoLoginId")
-    private String kakaoLoginId;
+    @Column(name = "kakaoId", nullable = false, unique = true)
+    private long kakaoId;
 
     @Embedded
     private Name name;
-
-    @Embedded
-    private Email email;
 
     @Embedded
     private BirthDate birthDate;
@@ -58,30 +54,26 @@ public class Member extends BaseEntity {
     private LocalDateTime deletedAt;
 
     public Member(
-        String kakaoLoginId,
+        long kakaoId,
         Name name,
-        Email email,
         BirthDate birthDate,
         String profileImageUrl
     ) {
-        this.kakaoLoginId = kakaoLoginId;
+        this.kakaoId = kakaoId;
         this.name = name;
-        this.email = email;
         this.birthDate = birthDate;
         this.profileImageUrl = profileImageUrl;
     }
 
     public Member(
-        String kakaoLoginId,
+        long kakaoId,
         String name,
-        String email,
         String birthDate,
         String profileImageUrl
     ) {
         this(
-            kakaoLoginId,
+            kakaoId,
             new Name(name),
-            new Email(email),
             new BirthDate(birthDate),
             profileImageUrl
         );
