@@ -1,5 +1,6 @@
 package goal.jalal.goaljalal.member.domain;
 
+import goal.jalal.goaljalal.club.domain.Club;
 import goal.jalal.goaljalal.global.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.vo.BirthDate;
 import goal.jalal.goaljalal.member.domain.vo.Name;
@@ -11,6 +12,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
@@ -32,8 +35,11 @@ public class Member extends BaseEntity {
     private Stat stat;
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private MatchHistory matchHistory;
+    private MemberMatchHistory memberMatchHistory;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clud_id")
+    private Club club;
 
     @Column(name = "kakaoId", nullable = false, unique = true)
     private long kakaoId;
