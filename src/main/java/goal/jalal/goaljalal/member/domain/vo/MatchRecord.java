@@ -1,6 +1,6 @@
 package goal.jalal.goaljalal.member.domain.vo;
 
-import goal.jalal.goaljalal.member.exception.MatchHistoryException;
+import goal.jalal.goaljalal.member.exception.MemberMatchHistoryException.UnknownMemberMatchResult;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
@@ -57,7 +57,7 @@ public class MatchRecord {
                 individualLoseCount++;
                 break;
             default:
-                throw new MatchHistoryException.UnknownMatchResult(result.name());
+                throw new UnknownMemberMatchResult(result.name());
         }
     }
 }

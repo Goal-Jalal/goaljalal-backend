@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "matchHistory")
+@Table(name = "memberMatchHistory")
 @Entity
-public class MatchHistory {
+public class MemberMatchHistory {
 
     @Id
     private Long id;
