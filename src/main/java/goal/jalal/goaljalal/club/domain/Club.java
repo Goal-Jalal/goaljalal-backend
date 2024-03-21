@@ -59,10 +59,10 @@ public class Club extends BaseEntity {
     private Member captain;
 
     public Club(
-        ClubName clubName,
-        String intro,
-        LogoImageUrl logoImageUrl,
-        Member captain
+        final ClubName clubName,
+        final String intro,
+        final LogoImageUrl logoImageUrl,
+        final Member captain
     ) {
         this.clubName = clubName;
         this.intro = intro;
@@ -71,10 +71,10 @@ public class Club extends BaseEntity {
     }
 
     public Club(
-        String clubName,
-        String intro,
-        String logoImageUrl,
-        Member captain
+        final String clubName,
+        final String intro,
+        final String logoImageUrl,
+        final Member captain
     ) {
         this(new ClubName(clubName), intro, new LogoImageUrl(logoImageUrl), captain);
     }

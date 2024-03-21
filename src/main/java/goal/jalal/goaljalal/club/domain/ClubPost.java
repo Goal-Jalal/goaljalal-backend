@@ -37,7 +37,11 @@ public class ClubPost extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public ClubPost(String content, Club club, Member member) {
+    public ClubPost(
+        final String content,
+        final Club club,
+        final Member member
+    ) {
         this.content = content;
         this.club = club;
         this.member = member;

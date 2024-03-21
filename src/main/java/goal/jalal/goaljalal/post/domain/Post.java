@@ -46,4 +46,37 @@ public class Post extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public Post(
+        final Address address,
+        final MatchForm matchForm,
+        final String content,
+        final String schedule,
+        final Member member
+    ) {
+        this.address = address;
+        this.matchForm = matchForm;
+        this.content = content;
+        this.schedule = schedule;
+        this.member = member;
+    }
+
+    public Post(
+        final String city,
+        final String county,
+        final String district,
+        final MatchForm matchForm,
+        final String content,
+        final String schedule,
+        final Member member
+    ) {
+        this(
+            new Address(city, county, district),
+            matchForm,
+            content,
+            schedule,
+            member
+        );
+    }
+
 }

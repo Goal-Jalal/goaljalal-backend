@@ -53,11 +53,11 @@ public class Attributes {
         return this;
     }
 
-    private int calcBalancePoint(int[] value) {
+    private int calcBalancePoint(final int[] value) {
         return TOTAL_VALUE - Arrays.stream(value).sum();
     }
 
-    private void setStats(int[] stats) {
+    private void setStats(final int[] stats) {
         this.shooting = stats[0];
         this.speed = stats[1];
         this.pass = stats[2];

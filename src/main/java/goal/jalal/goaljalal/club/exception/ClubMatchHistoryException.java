@@ -8,8 +8,8 @@ public class ClubMatchHistoryException extends RuntimeException {
 
     public static class ClubMatchResultNotExistException extends ClubMatchHistoryException {
 
-        public ClubMatchResultNotExistException(final int matchResultNumber) {
-            super(String.format("존재하지 않는 경기 결과입니다. - request info { club_match_result : %d}",
+        public ClubMatchResultNotExistException(final String matchResultNumber) {
+            super(String.format("존재하지 않는 경기 결과입니다. - request info { club_match_result : %s}",
                 matchResultNumber));
         }
     }

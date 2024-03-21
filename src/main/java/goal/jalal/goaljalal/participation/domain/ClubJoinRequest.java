@@ -40,4 +40,14 @@ public class ClubJoinRequest extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "club_id")
     private Club club;
+
+    public ClubJoinRequest(
+        final RequestStatus status,
+        final Member member,
+        final Club club
+    ) {
+        this.status = status;
+        this.member = member;
+        this.club = club;
+    }
 }
