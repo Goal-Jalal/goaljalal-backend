@@ -29,10 +29,6 @@ public class ClubMatchHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clud_id")
-    private Club club;
-
     @Column(name = "opponentClubName")
     private String opponentClubName;
 
@@ -43,7 +39,11 @@ public class ClubMatchHistory {
     @Embedded
     private Score score;
 
-    @Embedded
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "matchForm")
     private MatchForm matchForm;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clud_id")
+    private Club club;
 }
