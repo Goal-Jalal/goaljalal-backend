@@ -1,5 +1,6 @@
 package goal.jalal.goaljalal.member.domain;
 
+import goal.jalal.goaljalal.global.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.vo.MatchRecord;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "memberMatchHistory")
 @Entity
-public class MemberMatchHistory {
+public class MemberMatchHistory extends BaseEntity {
 
     @Id
     private Long id;
@@ -28,6 +29,11 @@ public class MemberMatchHistory {
     private Member member;
 
     @Embedded
-    private MatchRecord matchRecord;
+    private MatchRecord matchRecord = new MatchRecord();
 
+    public MemberMatchHistory(
+        final Member member
+    ) {
+        this.member = member;
+    }
 }

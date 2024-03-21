@@ -8,15 +8,15 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum MatchResult {
-    WIN(0),
-    TIE(1),
-    LOSE(2);
+    WIN("WIN"),
+    TIE("TIE"),
+    LOSE("LOSE");
 
-    private final int matchResultNumber;
+    private final String matchResultNumber;
 
-    public static MatchResult findMatchResult(final int matchResultNumber) {
+    public static MatchResult findMatchResult(final String matchResultNumber) {
         return Arrays.stream(values())
-            .filter(matchResult -> matchResult.matchResultNumber == matchResultNumber)
+            .filter(matchResult -> matchResult.matchResultNumber.equals(matchResultNumber))
             .findAny()
             .orElseThrow(
                 () -> new ClubMatchHistoryException.ClubMatchResultNotExistException(

@@ -14,8 +14,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +51,31 @@ public class Club extends BaseEntity {
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ClubJoinRequest> clubJoinRequests = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "captain_id")
+    @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ClubPost> clubPosts = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "captain_id", unique = true, nullable = false)
     private Member captain;
 
+    public Club(
+        final ClubName clubName,
+        final String intro,
+        final LogoImageUrl logoImageUrl,
+        final Member captain
+    ) {
+        this.clubName = clubName;
+        this.intro = intro;
+        this.logoImageUrl = logoImageUrl;
+        this.captain = captain;
+    }
+
+    public Club(
+        final String clubName,
+        final String intro,
+        final String logoImageUrl,
+        final Member captain
+    ) {
+        this(new ClubName(clubName), intro, new LogoImageUrl(logoImageUrl), captain);
+    }
 }

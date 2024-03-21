@@ -17,7 +17,7 @@ public class LogoImageUrl {
     @Column(name = "logoImageUrl", nullable = false)
     private String value;
 
-    private LogoImageUrl(final String value) {
+    public LogoImageUrl(final String value) {
         validateNull(value);
         this.value = value;
     }

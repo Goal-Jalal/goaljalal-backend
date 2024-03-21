@@ -22,7 +22,11 @@ public class Address {
     @Column(name = "district")
     private String district;
 
-    public Address(final String city, final String county, final String district) {
+    public Address(
+        final String city,
+        final String county,
+        final String district
+    ) {
         this.city = city;
         this.county = county;
         this.district = district;

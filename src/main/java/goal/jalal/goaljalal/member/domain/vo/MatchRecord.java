@@ -36,7 +36,7 @@ public class MatchRecord {
         CLUB_WIN, CLUB_TIE, CLUB_LOSE, INDIVIDUAL_WIN, INDIVIDUAL_TIE, INDIVIDUAL_LOSE
     }
 
-    public void updateMatchRecord(MatchResult result) {
+    public void updateMatchRecord(final MatchResult result) {
         switch (result) {
             case CLUB_WIN:
                 clubWinCount++;

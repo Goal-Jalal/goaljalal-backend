@@ -3,6 +3,7 @@ package goal.jalal.goaljalal.club.domain;
 import goal.jalal.goaljalal.club.domain.vo.MatchForm;
 import goal.jalal.goaljalal.club.domain.vo.MatchResult;
 import goal.jalal.goaljalal.club.domain.vo.Score;
+import goal.jalal.goaljalal.global.domain.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -23,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "clubMatchHistory")
 @Entity
-public class ClubMatchHistory {
+public class ClubMatchHistory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,4 +47,18 @@ public class ClubMatchHistory {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clud_id")
     private Club club;
+
+    public ClubMatchHistory(
+        final String opponentClubName,
+        final MatchResult matchResult,
+        final Score score,
+        final MatchForm matchForm,
+        final Club club
+    ) {
+        this.opponentClubName = opponentClubName;
+        this.matchResult = matchResult;
+        this.score = score;
+        this.matchForm = matchForm;
+        this.club = club;
+    }
 }

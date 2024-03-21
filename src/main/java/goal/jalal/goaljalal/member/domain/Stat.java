@@ -30,7 +30,10 @@ public class Stat {
     @Embedded
     private Attributes attributes = new Attributes();
 
-    public Stat(Long id, Member member) {
+    public Stat(
+        final Long id,
+        final Member member
+    ) {
         this.id = id;
         this.member = member;
     }

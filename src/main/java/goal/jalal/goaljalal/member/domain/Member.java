@@ -1,6 +1,7 @@
 package goal.jalal.goaljalal.member.domain;
 
 import goal.jalal.goaljalal.club.domain.Club;
+import goal.jalal.goaljalal.club.domain.ClubPost;
 import goal.jalal.goaljalal.global.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.vo.BirthDate;
 import goal.jalal.goaljalal.member.domain.vo.Name;
@@ -70,11 +71,14 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member")
     private List<Post> posts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<ClubPost> clubPosts = new ArrayList<>();
+
     public Member(
-        long kakaoId,
-        Name name,
-        BirthDate birthDate,
-        String profileImageUrl
+        final long kakaoId,
+        final Name name,
+        final BirthDate birthDate,
+        final String profileImageUrl
     ) {
         this.kakaoId = kakaoId;
         this.name = name;
@@ -83,10 +87,10 @@ public class Member extends BaseEntity {
     }
 
     public Member(
-        long kakaoId,
-        String name,
-        String birthDate,
-        String profileImageUrl
+        final long kakaoId,
+        final String name,
+        final String birthDate,
+        final String profileImageUrl
     ) {
         this(
             kakaoId,
