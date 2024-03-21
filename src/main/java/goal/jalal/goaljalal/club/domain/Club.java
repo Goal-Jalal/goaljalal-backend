@@ -4,6 +4,8 @@ import goal.jalal.goaljalal.club.domain.vo.ClubName;
 import goal.jalal.goaljalal.club.domain.vo.LogoImageUrl;
 import goal.jalal.goaljalal.global.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.Member;
+import goal.jalal.goaljalal.participation.domain.ClubJoinRequest;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -43,8 +45,11 @@ public class Club extends BaseEntity {
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
     private List<Member> members = new ArrayList<>();
 
-    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ClubMatchHistory> clubHistories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ClubJoinRequest> clubJoinRequests = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "captain_id")
