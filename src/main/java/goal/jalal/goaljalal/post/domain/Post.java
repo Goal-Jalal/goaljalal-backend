@@ -1,8 +1,9 @@
-package goal.jalal.goaljalal.club.domain;
+package goal.jalal.goaljalal.post.domain;
 
 import goal.jalal.goaljalal.club.domain.vo.MatchForm;
-import goal.jalal.goaljalal.club.domain.vo.MatchResult;
-import goal.jalal.goaljalal.club.domain.vo.Score;
+import goal.jalal.goaljalal.global.domain.BaseEntity;
+import goal.jalal.goaljalal.member.domain.Member;
+import goal.jalal.goaljalal.post.domain.vo.Address;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -21,29 +22,28 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "clubMatchHistory")
+@Table(name = "post")
 @Entity
-public class ClubMatchHistory {
+public class Post extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "opponentClubName")
-    private String opponentClubName;
-
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "matchResult")
-    private MatchResult matchResult;
-
     @Embedded
-    private Score score;
+    private Address address;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "matchForm")
     private MatchForm matchForm;
 
+    @Column(name = "content", columnDefinition = "text", nullable = true)
+    private String content;
+
+    @Column(name = "schedule")
+    private String schedule;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clud_id")
-    private Club club;
+    @JoinColumn(name = "member_id")
+    private Member member;
 }
