@@ -5,6 +5,8 @@ import goal.jalal.goaljalal.member.exception.StatException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -41,29 +43,26 @@ public class Attributes {
     @Column(name = "balancePoint")
     private int balancePoint = 150;
 
-    public Attributes change(final int[] stats) {
-        validateStatLengthException(stats);
-        validateValueRage(stats);
-        validateBalancePoint(stats);
+    public Attributes change(final HashMap<StatType, Integer> stats) {
 
-        this.balancePoint = calcBalancePoint(stats);
+        validateNull(stats);
 
+        int[] values = stats.values().stream().mapToInt(Integer::intValue).toArray();
+
+        validateStatLengthException(values);
+        validateValueRange(values);
+        validateBalancePoint(values);
+
+        this.balancePoint = calcBalancePoint(values);
         setStats(stats);
 
         return this;
     }
 
-    private int calcBalancePoint(final int[] value) {
-        return TOTAL_VALUE - Arrays.stream(value).sum();
-    }
-
-    private void setStats(final int[] stats) {
-        this.shooting = stats[0];
-        this.speed = stats[1];
-        this.pass = stats[2];
-        this.dribble = stats[3];
-        this.defense = stats[4];
-        this.health = stats[5];
+    private void validateNull(HashMap<StatType, Integer> stats) {
+        if (Objects.isNull(stats)) {
+            throw new NullPointerException("스탯은 null일 수 없습니다.");
+        }
     }
 
     private void validateStatLengthException(final int[] value) {
@@ -72,8 +71,11 @@ public class Attributes {
         }
     }
 
-    private void validateValueRage(final int[] value) {
-        if (Arrays.stream(value).anyMatch(val -> val < MIN_VALUE || val > MAX_VALUE)) {
+    private void validateValueRange(final int[] values) {
+        boolean isOutOfRange = Arrays.stream(values)
+            .anyMatch(value -> value < MIN_VALUE || value > MAX_VALUE);
+
+        if (isOutOfRange) {
             throw new StatException.StatRangeException();
         }
     }
@@ -83,5 +85,18 @@ public class Attributes {
         if (total > TOTAL_VALUE) {
             throw new StatException.StatTotalException(total);
         }
+    }
+
+    private void setStats(final HashMap<StatType, Integer> stats) {
+        this.shooting = stats.get(StatType.SHOOTING);
+        this.speed = stats.get(StatType.SPEED);
+        this.pass = stats.get(StatType.PASS);
+        this.dribble = stats.get(StatType.DRIBBLE);
+        this.defense = stats.get(StatType.DEFENSE);
+        this.health = stats.get(StatType.HEALTH);
+    }
+
+    private int calcBalancePoint(final int[] value) {
+        return TOTAL_VALUE - Arrays.stream(value).sum();
     }
 }

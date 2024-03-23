@@ -3,6 +3,7 @@ package goal.jalal.goaljalal.member.domain.vo;
 import goal.jalal.goaljalal.member.exception.MemberException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -26,13 +27,33 @@ public class BirthDate {
             + "|^(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
             + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
     private static final Pattern DATE_PATTERN = Pattern.compile(DATE_REGEX);
+    private static final int MAX_LENGTH = 10;
 
-    @Column(name = "birthDate")
+    @Column(name = "birthDate", nullable = false, length = MAX_LENGTH)
     private String date;
 
-    public BirthDate(final String date) {
-        validateDateRegex(date);
-        this.date = date;
+    public BirthDate(final String value) {
+        validateNull(value);
+        final String trimmedValue = value.trim();
+        validateTrim(trimmedValue);
+        validateDateRegex(trimmedValue);
+        this.date = trimmedValue;
+    }
+
+    private void validateNull(final String value) {
+        if (Objects.isNull(value)) {
+            throw new NullPointerException("생년월일은 null일 수 없습니다.");
+        }
+    }
+
+    private void validateTrim(final String value) {
+        if (value.length() > MAX_LENGTH) {
+            throw new MemberException.BirthDateLengthException(MAX_LENGTH, value);
+        }
+
+        if (value.isBlank()) {
+            throw new MemberException.BirthDateBlankException();
+        }
     }
 
     private void validateDateRegex(final String date) {
