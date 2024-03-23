@@ -18,7 +18,7 @@ public class MatchRecord {
     private int clubWinCount = 0;
 
     @Column(name = "clubTieCount")
-    private int clubTieCount = 0;
+    private int clubDrawCount = 0;
 
     @Column(name = "clubLoseCount")
     private int clubLoseCount = 0;
@@ -26,23 +26,19 @@ public class MatchRecord {
     @Column(name = "individualWinCount")
     private int individualWinCount = 0;
 
-    @Column(name = "individualTieCount")
-    private int individualTieCount = 0;
+    @Column(name = "individualDrawCount")
+    private int individualDrawCount = 0;
 
     @Column(name = "individualLoseCount")
     private int individualLoseCount = 0;
-
-    public enum MatchResult {
-        CLUB_WIN, CLUB_TIE, CLUB_LOSE, INDIVIDUAL_WIN, INDIVIDUAL_TIE, INDIVIDUAL_LOSE
-    }
 
     public void updateMatchRecord(final MatchResult result) {
         switch (result) {
             case CLUB_WIN:
                 clubWinCount++;
                 break;
-            case CLUB_TIE:
-                clubTieCount++;
+            case CLUB_Draw:
+                clubDrawCount++;
                 break;
             case CLUB_LOSE:
                 clubLoseCount++;
@@ -50,8 +46,8 @@ public class MatchRecord {
             case INDIVIDUAL_WIN:
                 individualWinCount++;
                 break;
-            case INDIVIDUAL_TIE:
-                individualTieCount++;
+            case INDIVIDUAL_Draw:
+                individualDrawCount++;
                 break;
             case INDIVIDUAL_LOSE:
                 individualLoseCount++;
