@@ -23,17 +23,27 @@ public class MemberException extends RuntimeException {
         }
     }
 
-    public static class EmailRegexException extends MemberException {
+    public static class BirthDateLengthException extends MemberException {
 
-        public EmailRegexException(final String email) {
-            super(String.format("올바른 이메일 형식이 아닙니다. - request info { email : %s }", email));
+        public BirthDateLengthException(final int allowedLength, final String inputBirthDate) {
+            super(String.format(
+                "생년월일의 길이가 최대 길이를 초과했습니다. - request info { allowedLength : %d, input_value_length : %d }",
+                allowedLength,
+                inputBirthDate.length()));
         }
     }
 
     public static class BirthDateRegexException extends MemberException {
 
-        public BirthDateRegexException(final String date) {
-            super(String.format("올바른 날짜 형식이 아닙니다. - request info { date : %s }", date));
+        public BirthDateRegexException(final String birthDate) {
+            super(String.format("올바른 생년월일 형식이 아닙니다. - request info { date : %s }", birthDate));
+        }
+    }
+
+    public static class BirthDateBlankException extends MemberException {
+
+        public BirthDateBlankException() {
+            super("생년월일은 공백을 제외한 10자리 여야 합니다.");
         }
     }
 }
