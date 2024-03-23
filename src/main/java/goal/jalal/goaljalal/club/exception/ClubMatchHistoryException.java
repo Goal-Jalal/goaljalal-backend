@@ -17,7 +17,7 @@ public class ClubMatchHistoryException extends RuntimeException {
     public static class ScoreRangeException extends ClubMatchHistoryException {
 
         public ScoreRangeException(final int score) {
-            super(String.format("스코어는 0 - 100 사이의 값이어야만 합니다. - request { %d }", score));
+            super(String.format("스코어는 0 - 200 사이의 값이어야만 합니다. - request { %d }", score));
         }
     }
 

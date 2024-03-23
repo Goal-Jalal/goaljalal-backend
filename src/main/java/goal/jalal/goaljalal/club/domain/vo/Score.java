@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class Score {
 
-    public static final int MAX_SCORE = 100;
+    public static final int MAX_SCORE = 200;
     public static final int MIN_SCORE = 0;
 
     @Column(name = "homeScore")
@@ -25,12 +25,12 @@ public class Score {
     private int awayScore;
 
     public Score(int homeScore, int awayScore) {
-        validateMaxScore(homeScore, awayScore);
+        validateMinMaxScore(homeScore, awayScore);
         this.homeScore = homeScore;
         this.awayScore = awayScore;
     }
 
-    public void validateMaxScore(final int... values) {
+    public void validateMinMaxScore(final int... values) {
         Arrays.stream(values)
             .filter(score -> score < MIN_SCORE || score > MAX_SCORE)
             .findFirst()
