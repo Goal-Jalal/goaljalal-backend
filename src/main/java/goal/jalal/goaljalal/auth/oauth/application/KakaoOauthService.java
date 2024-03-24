@@ -98,8 +98,7 @@ public class KakaoOauthService {
             OauthMember oauthMember = mapper.readValue(response.getBody(), OauthMember.class);
             return oauthMember;
         } catch (JsonProcessingException exception) {
-            log.error("kakao oauth data json parsing Exception - ",
-                exception);
+            log.error("kakao oauth data json parsing Exception - ", exception);
             throw new IllegalArgumentException(exception);
         }
     }
