@@ -2,6 +2,9 @@ package goal.jalal.goaljalal.post.domain.vo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,12 +30,21 @@ public class Address {
         final String county,
         final String district
     ) {
-        this.city = city;
-        this.county = county;
-        this.district = district;
+        this.city = validate(city);
+        this.county = validate(county);
+        this.district = validate(district);
+    }
+
+    private String validate(final String value) {
+        if (Objects.isNull(value) || value.isBlank()) {
+            return null;
+        }
+        return value.trim();
     }
 
     public String getFullAddress() {
-        return String.format("%s %s %s", this.city, this.county, this.district).trim();
+        return Stream.of(this.city, this.county, this.district)
+            .filter(Objects::nonNull)
+            .collect(Collectors.joining(" ")).trim();
     }
 }
