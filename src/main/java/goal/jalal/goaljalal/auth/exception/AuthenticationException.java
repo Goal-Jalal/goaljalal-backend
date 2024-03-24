@@ -6,6 +6,13 @@ public class AuthenticationException extends RuntimeException {
         super(message);
     }
 
+    public static class FailAuthenticationException extends AuthenticationException {
+
+        public FailAuthenticationException(final String message) {
+            super(message);
+        }
+    }
+
     public static class InvalidAccessTokenException extends AuthenticationException {
 
         public InvalidAccessTokenException(final String token) {
