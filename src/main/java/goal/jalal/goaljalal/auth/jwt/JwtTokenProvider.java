@@ -45,7 +45,7 @@ public class JwtTokenProvider {
     public Long extractKakaoIdFromAccessToken(final String token) {
         validateAccessToken(token);
         final Jws<Claims> claimsJws = getAccessTokenParser().parseClaimsJws(token);
-        final Long extractedKakaoId = claimsJws.getBody().get(ID_KEY, Long.class);
+        Long extractedKakaoId = claimsJws.getBody().get(ID_KEY, Long.class);
         if (extractedKakaoId == null) {
             throw new AuthenticationException.AccessTokenClaimNullException(token);
         }
@@ -90,7 +90,7 @@ public class JwtTokenProvider {
     public Long extractKakaoIdFromRefreshToken(final String token) {
         validateRefreshToken(token);
         final Jws<Claims> claimsJws = getRefreshTokenParser().parseClaimsJws(token);
-        final Long extractedKakaoId = claimsJws.getBody().get(ID_KEY, Long.class);
+        Long extractedKakaoId = claimsJws.getBody().get(ID_KEY, Long.class);
         if (extractedKakaoId == null) {
             throw new AuthenticationException.RefreshTokenClaimNullException(token);
         }
