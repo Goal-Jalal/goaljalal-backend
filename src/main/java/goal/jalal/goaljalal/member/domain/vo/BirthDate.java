@@ -29,21 +29,18 @@ public class BirthDate {
     private static final Pattern DATE_PATTERN = Pattern.compile(DATE_REGEX);
     private static final int MAX_LENGTH = 10;
 
-    @Column(name = "birthDate", nullable = false, length = MAX_LENGTH)
+    @Column(name = "birthDate", length = MAX_LENGTH)
     private String date;
 
     public BirthDate(final String value) {
-        validateNull(value);
+        if (Objects.isNull(value)) {
+            this.date = null;
+            return;
+        }
         final String trimmedValue = value.trim();
         validateTrim(trimmedValue);
         validateDateRegex(trimmedValue);
         this.date = trimmedValue;
-    }
-
-    private void validateNull(final String value) {
-        if (Objects.isNull(value)) {
-            throw new NullPointerException("생년월일은 null일 수 없습니다.");
-        }
     }
 
     private void validateTrim(final String value) {

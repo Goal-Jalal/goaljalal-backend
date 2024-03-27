@@ -12,15 +12,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 class BirthDateTest {
 
     @Test
-    @DisplayName("생년월일 null이면 NullPointerException이 발생해야 합니다.")
+    @DisplayName("생년월일 null이면 null이 반환되어야 합니다.")
     void birthDateConstructor_Nullvalue_ExceptionThrown() {
         //given
         final String birthDateNull = null;
 
-        //when & then
-        assertThatThrownBy(() -> new BirthDate(birthDateNull))
-            .isInstanceOf(NullPointerException.class)
-            .hasMessageContaining("생년월일은 null일 수 없습니다.");
+        //when
+        BirthDate newBirthDate = new BirthDate(birthDateNull);
+
+        //then
+        assertThat(newBirthDate.getDate()).isNull();
     }
 
     @Test

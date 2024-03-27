@@ -99,4 +99,9 @@ public class Member extends BaseEntity {
             profileImageUrl
         );
     }
+
+    public void updateLoginTimestamp() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }

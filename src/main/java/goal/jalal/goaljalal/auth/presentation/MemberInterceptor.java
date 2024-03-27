@@ -29,7 +29,7 @@ public class MemberInterceptor implements HandlerInterceptor {
 
     private void validateMemberExist(final Long kakaoId) {
         if (notExistByKakaoId(kakaoId)) {
-            String logMessage = "인증 실패(존재하지 않는 멤버) - 회원 이메일 : " + kakaoId;
+            String logMessage = "인증 실패(존재하지 않는 멤버) - 회원 카카오ID : " + kakaoId;
             throw new AuthenticationException.FailAuthenticationException(logMessage);
         }
     }
