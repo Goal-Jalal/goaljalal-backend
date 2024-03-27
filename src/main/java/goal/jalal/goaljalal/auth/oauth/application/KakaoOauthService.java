@@ -52,8 +52,8 @@ public class KakaoOauthService {
         return new TokenResponse(accessToken, refreshToken);
     }
 
-    private OauthMember createOauthMember(final String accessToken) {
-        ResponseEntity<String> response = requestOauthMemberInfo(accessToken);
+    private OauthMember createOauthMember(final String oauthAccessToken) {
+        ResponseEntity<String> response = requestOauthMemberInfo(oauthAccessToken);
         OauthMember oauthMember = parsingOauthMember(response);
 
         final long kakaoId = oauthMember.kakaoId();
@@ -71,7 +71,9 @@ public class KakaoOauthService {
         Optional<Member> optionalMember = memberRepository.findByKakaoId(
             oauthMember.kakaoId());
         if (optionalMember.isPresent()) {
-            return optionalMember.get();
+            Member member = optionalMember.get();
+            member.updateLoginTimestamp();
+            return member;
         }
 
         final Member member = new Member(oauthMember.kakaoId(), oauthMember.properties().nickname(),
