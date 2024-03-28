@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "clubMatchHistory")
+@Table(name = "club_match_history")
 @Entity
 public class ClubMatchHistory extends BaseEntity {
 
@@ -30,18 +30,18 @@ public class ClubMatchHistory extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "opponentClubName")
+    @Column(name = "opponent_clubName")
     private String opponentClubName;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "matchResult")
+    @Column(name = "match_result")
     private MatchResult matchResult;
 
     @Embedded
     private Score score;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "matchForm")
+    @Column(name = "match_form")
     private MatchForm matchForm;
 
     @ManyToOne(fetch = FetchType.LAZY)

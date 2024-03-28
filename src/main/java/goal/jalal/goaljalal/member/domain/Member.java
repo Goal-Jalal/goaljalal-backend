@@ -41,7 +41,7 @@ public class Member extends BaseEntity {
     @JoinColumn(name = "clud_id")
     private Club club;
 
-    @Column(name = "kakaoId", nullable = false, unique = true)
+    @Column(name = "kakao_id", nullable = false, unique = true)
     private long kakaoId;
 
     @Embedded
@@ -50,13 +50,13 @@ public class Member extends BaseEntity {
     @Embedded
     private BirthDate birthDate;
 
-    @Column(name = "profileImageUrl")
+    @Column(name = "profile_image_url")
     private String profileImageUrl;
 
-    @Column(name = "isDeleted")
+    @Column(name = "is_deleted")
     private boolean isDeleted = false;
 
-    @Column(name = "deletedAt")
+    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

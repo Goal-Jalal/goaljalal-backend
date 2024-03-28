@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class LogoImageUrl {
 
-    @Column(name = "logoImageUrl", nullable = false)
+    @Column(name = "logo_image_url", nullable = false)
     private String value;
 
     public LogoImageUrl(final String value) {

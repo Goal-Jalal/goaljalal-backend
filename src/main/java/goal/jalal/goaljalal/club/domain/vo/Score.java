@@ -18,10 +18,10 @@ public class Score {
     public static final int MAX_SCORE = 200;
     public static final int MIN_SCORE = 0;
 
-    @Column(name = "homeScore")
+    @Column(name = "home_score")
     private int homeScore;
 
-    @Column(name = "awayScore")
+    @Column(name = "away_score")
     private int awayScore;
 
     public Score(int homeScore, int awayScore) {

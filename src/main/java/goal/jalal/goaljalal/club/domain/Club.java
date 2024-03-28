@@ -33,7 +33,6 @@ public class Club extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
     private ClubName clubName;
 
     @Column(name = "intro", columnDefinition = "text")
