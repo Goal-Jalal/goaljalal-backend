@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "clubJoinRequest")
+@Table(name = "club_join_request")
 @Entity
 public class ClubJoinRequest extends BaseEntity {
 

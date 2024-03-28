@@ -29,7 +29,7 @@ public class BirthDate {
     private static final Pattern DATE_PATTERN = Pattern.compile(DATE_REGEX);
     private static final int MAX_LENGTH = 10;
 
-    @Column(name = "birthDate", length = MAX_LENGTH)
+    @Column(name = "birth_date", length = MAX_LENGTH)
     private String date;
 
     public BirthDate(final String value) {
