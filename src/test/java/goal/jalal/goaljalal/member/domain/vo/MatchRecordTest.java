@@ -29,7 +29,7 @@ class MatchRecordTest {
         MatchRecord record = new MatchRecord();
 
         //when
-        record.updateMatchRecord(MatchResult.CLUB_Draw);
+        record.updateMatchRecord(MatchResult.CLUB_DRAW);
 
         //then
         assertThat(1).isEqualTo(record.getClubDrawCount());
@@ -68,7 +68,7 @@ class MatchRecordTest {
         MatchRecord record = new MatchRecord();
 
         //when
-        record.updateMatchRecord(MatchResult.INDIVIDUAL_Draw);
+        record.updateMatchRecord(MatchResult.INDIVIDUAL_DRAW);
 
         //then
         assertThat(1).isEqualTo(record.getIndividualDrawCount());

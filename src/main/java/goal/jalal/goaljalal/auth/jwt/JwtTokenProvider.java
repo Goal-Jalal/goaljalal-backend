@@ -54,7 +54,7 @@ public class JwtTokenProvider {
 
     private void validateAccessToken(final String token) {
         try {
-            final Claims claims = Jwts.parserBuilder()
+            Jwts.parserBuilder()
                 .setSigningKey(getAccessTokenSecretKey())
                 .build().parseClaimsJws(token).getBody();
         } catch (MalformedJwtException | UnsupportedJwtException e) {
@@ -99,7 +99,7 @@ public class JwtTokenProvider {
 
     private void validateRefreshToken(final String token) {
         try {
-            final Claims claims = Jwts.parserBuilder()
+            Jwts.parserBuilder()
                 .setSigningKey(getRefreshTokenSecretKey())
                 .build().parseClaimsJws(token).getBody();
         } catch (MalformedJwtException | UnsupportedJwtException e) {
