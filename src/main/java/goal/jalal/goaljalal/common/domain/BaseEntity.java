@@ -1,4 +1,4 @@
-package goal.jalal.goaljalal.global.domain;
+package goal.jalal.goaljalal.common.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

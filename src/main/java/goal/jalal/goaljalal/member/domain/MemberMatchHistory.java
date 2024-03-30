@@ -1,6 +1,6 @@
 package goal.jalal.goaljalal.member.domain;
 
-import goal.jalal.goaljalal.global.domain.BaseEntity;
+import goal.jalal.goaljalal.common.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.vo.MatchRecord;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;

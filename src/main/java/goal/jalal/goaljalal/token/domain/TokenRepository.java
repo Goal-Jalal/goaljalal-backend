@@ -10,6 +10,8 @@ public interface TokenRepository extends JpaRepository<Token, Long> {
 
     Optional<Token> findByRefreshToken(final String refreshToken);
 
+    boolean existsByRefreshToken(final String refreshToken);
+
     Optional<Token> findByMember(final Member member);
 
     @Query("DELETE from Token t where t.member.id = :memberId")
