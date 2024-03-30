@@ -1,6 +1,6 @@
 package goal.jalal.goaljalal.club.domain.vo;
 
-import goal.jalal.goaljalal.club.exception.ClubMatchHistoryException;
+import goal.jalal.goaljalal.club.exception.clubmatchhistory.ClubMatchHistoryException;
 import java.util.Arrays;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

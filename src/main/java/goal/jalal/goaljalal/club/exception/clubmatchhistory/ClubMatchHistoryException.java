@@ -1,4 +1,4 @@
-package goal.jalal.goaljalal.club.exception;
+package goal.jalal.goaljalal.club.exception.clubmatchhistory;
 
 public class ClubMatchHistoryException extends RuntimeException {
 
@@ -11,13 +11,6 @@ public class ClubMatchHistoryException extends RuntimeException {
         public ClubMatchResultNotExistException(final String matchResultNumber) {
             super(String.format("존재하지 않는 경기 결과입니다. - request info { club_match_result : %s}",
                 matchResultNumber));
-        }
-    }
-
-    public static class ScoreRangeException extends ClubMatchHistoryException {
-
-        public ScoreRangeException(final int score) {
-            super(String.format("스코어는 0 - 200 사이의 값이어야만 합니다. - request { %d }", score));
         }
     }
 

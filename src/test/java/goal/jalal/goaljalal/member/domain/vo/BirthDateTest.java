@@ -3,7 +3,9 @@ package goal.jalal.goaljalal.member.domain.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import goal.jalal.goaljalal.member.exception.MemberException;
+import goal.jalal.goaljalal.member.exception.member.BirthDateBlankException;
+import goal.jalal.goaljalal.member.exception.member.BirthDateLengthException;
+import goal.jalal.goaljalal.member.exception.member.BirthDateRegexException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,7 +34,7 @@ class BirthDateTest {
 
         //when & then
         assertThatThrownBy(() -> new BirthDate(tooLongBirthDate))
-            .isInstanceOf(MemberException.BirthDateLengthException.class)
+            .isInstanceOf(BirthDateLengthException.class)
             .hasMessageContaining("생년월일의 길이가 최대 길이를 초과했습니다.");
     }
 
@@ -42,7 +44,7 @@ class BirthDateTest {
     void birthConstructor_BlankName_ExceptionThrown(final String blankValue) {
         //when & then
         assertThatThrownBy(() -> new BirthDate(blankValue))
-            .isInstanceOf(MemberException.BirthDateBlankException.class)
+            .isInstanceOf(BirthDateBlankException.class)
             .hasMessageContaining("생년월일은 공백을 제외한 10자리 여야 합니다.");
     }
 
@@ -64,6 +66,6 @@ class BirthDateTest {
     void invalidDateRegex(final String invalidBirthDate) {
         // when & then
         assertThatThrownBy(() -> new BirthDate(invalidBirthDate))
-            .isInstanceOf(MemberException.BirthDateRegexException.class);
+            .isInstanceOf(BirthDateRegexException.class);
     }
 }

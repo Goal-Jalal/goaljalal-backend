@@ -2,7 +2,7 @@ package goal.jalal.goaljalal.club.domain.vo;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import goal.jalal.goaljalal.club.exception.ClubMatchHistoryException;
+import goal.jalal.goaljalal.club.exception.clubmatchhistory.ClubMatchHistoryException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package goal.jalal.goaljalal.club.domain.vo;
 
-import goal.jalal.goaljalal.club.exception.ClubMatchHistoryException;
+import goal.jalal.goaljalal.club.exception.clubmatchhistory.ScoreRangeException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class Score {
             .filter(score -> score < MIN_SCORE || score > MAX_SCORE)
             .findFirst()
             .ifPresent(score -> {
-                throw new ClubMatchHistoryException.ScoreRangeException(score);
+                throw new ScoreRangeException(score);
             });
     }
 }

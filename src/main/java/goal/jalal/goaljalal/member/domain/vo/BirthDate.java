@@ -1,6 +1,8 @@
 package goal.jalal.goaljalal.member.domain.vo;
 
-import goal.jalal.goaljalal.member.exception.MemberException;
+import goal.jalal.goaljalal.member.exception.member.BirthDateBlankException;
+import goal.jalal.goaljalal.member.exception.member.BirthDateLengthException;
+import goal.jalal.goaljalal.member.exception.member.BirthDateRegexException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.util.Objects;
@@ -45,17 +47,17 @@ public class BirthDate {
 
     private void validateTrim(final String value) {
         if (value.length() > MAX_LENGTH) {
-            throw new MemberException.BirthDateLengthException(MAX_LENGTH, value);
+            throw new BirthDateLengthException(MAX_LENGTH, value);
         }
 
         if (value.isBlank()) {
-            throw new MemberException.BirthDateBlankException();
+            throw new BirthDateBlankException();
         }
     }
 
     private void validateDateRegex(final String date) {
         if (!DATE_PATTERN.matcher(date).matches()) {
-            throw new MemberException.BirthDateRegexException(date);
+            throw new BirthDateRegexException(date);
         }
     }
 }

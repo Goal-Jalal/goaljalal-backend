@@ -1,4 +1,4 @@
-package goal.jalal.goaljalal.member.exception;
+package goal.jalal.goaljalal.member.exception.membermatchhistory;
 
 public class MemberMatchHistoryException extends RuntimeException {
 

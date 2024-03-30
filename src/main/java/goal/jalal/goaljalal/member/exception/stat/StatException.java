@@ -1,16 +1,9 @@
-package goal.jalal.goaljalal.member.exception;
+package goal.jalal.goaljalal.member.exception.stat;
 
 public class StatException extends RuntimeException {
 
     public StatException(final String message) {
         super(message);
-    }
-
-    public static class StatRangeException extends StatException {
-
-        public StatRangeException() {
-            super("올바른 스탯 값이 아닙니다.");
-        }
     }
 
     public static class StatTotalException extends StatException {

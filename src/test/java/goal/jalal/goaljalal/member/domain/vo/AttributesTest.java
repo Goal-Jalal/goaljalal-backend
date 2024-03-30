@@ -3,7 +3,8 @@ package goal.jalal.goaljalal.member.domain.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import goal.jalal.goaljalal.member.exception.StatException;
+import goal.jalal.goaljalal.member.exception.stat.StatException;
+import goal.jalal.goaljalal.member.exception.stat.StatRangeException;
 import java.util.HashMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -75,7 +76,7 @@ class AttributesTest {
 
         //when & then
         assertThatThrownBy(() -> attributes.change(stat))
-            .isInstanceOf(StatException.StatRangeException.class)
+            .isInstanceOf(StatRangeException.class)
             .hasMessageContaining("올바른 스탯 값이 아닙니다.");
     }
 
