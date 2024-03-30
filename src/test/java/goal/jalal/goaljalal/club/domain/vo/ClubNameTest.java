@@ -3,7 +3,8 @@ package goal.jalal.goaljalal.club.domain.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import goal.jalal.goaljalal.club.exception.ClubException;
+import goal.jalal.goaljalal.club.exception.club.NameBlankException;
+import goal.jalal.goaljalal.club.exception.club.NameLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,7 +32,7 @@ class ClubNameTest {
 
         //when & then
         assertThatThrownBy(() -> new ClubName(tooLongName))
-            .isInstanceOf(ClubException.NameLengthException.class)
+            .isInstanceOf(NameLengthException.class)
             .hasMessageContaining("클럽 이름의 길이가 최대 이름 크기를 초과했습니다.");
 
     }
@@ -42,7 +43,7 @@ class ClubNameTest {
     void nameConstructor_BlankName_ExceptionThrown(final String blankValue) {
         //when & then
         assertThatThrownBy(() -> new ClubName(blankValue))
-            .isInstanceOf(ClubException.NameBlankException.class)
+            .isInstanceOf(NameBlankException.class)
             .hasMessageContaining("클럽 이름은 공백을 제외한 1자 이상이어야 합니다.");
     }
 
