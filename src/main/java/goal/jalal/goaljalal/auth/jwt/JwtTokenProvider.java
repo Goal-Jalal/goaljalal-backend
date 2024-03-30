@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtTokenProvider {
 
-    private final String ID_KEY = "kakaoId";
+    private static final String ID_KEY = "kakaoId";
 
     @Value("${jwt.access.secret}")
     private String jwtAccessTokenSecret;
