@@ -1,7 +1,7 @@
 package goal.jalal.goaljalal.post.domain;
 
 import goal.jalal.goaljalal.club.domain.vo.MatchForm;
-import goal.jalal.goaljalal.global.domain.BaseEntity;
+import goal.jalal.goaljalal.common.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.Member;
 import goal.jalal.goaljalal.post.domain.vo.Address;
 import jakarta.persistence.Column;

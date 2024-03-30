@@ -1,6 +1,6 @@
 package goal.jalal.goaljalal.club.domain;
 
-import goal.jalal.goaljalal.global.domain.BaseEntity;
+import goal.jalal.goaljalal.common.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.Member;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

@@ -1,7 +1,7 @@
 package goal.jalal.goaljalal.participation.domain;
 
 import goal.jalal.goaljalal.club.domain.Club;
-import goal.jalal.goaljalal.global.domain.BaseEntity;
+import goal.jalal.goaljalal.common.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.Member;
 import goal.jalal.goaljalal.participation.domain.vo.RequestStatus;
 import jakarta.persistence.Column;

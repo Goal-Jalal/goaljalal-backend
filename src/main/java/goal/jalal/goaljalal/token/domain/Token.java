@@ -1,6 +1,6 @@
 package goal.jalal.goaljalal.token.domain;
 
-import goal.jalal.goaljalal.global.domain.BaseEntity;
+import goal.jalal.goaljalal.common.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

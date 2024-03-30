@@ -2,7 +2,7 @@ package goal.jalal.goaljalal.member.domain;
 
 import goal.jalal.goaljalal.club.domain.Club;
 import goal.jalal.goaljalal.club.domain.ClubPost;
-import goal.jalal.goaljalal.global.domain.BaseEntity;
+import goal.jalal.goaljalal.common.domain.BaseEntity;
 import goal.jalal.goaljalal.member.domain.vo.BirthDate;
 import goal.jalal.goaljalal.member.domain.vo.Name;
 import goal.jalal.goaljalal.participation.domain.ClubJoinRequest;
