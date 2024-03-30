@@ -14,22 +14,22 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class MatchRecord {
 
-    @Column(name = "clubWinCount")
+    @Column(name = "club_win_count")
     private int clubWinCount = 0;
 
-    @Column(name = "clubTieCount")
+    @Column(name = "club_draw_count")
     private int clubDrawCount = 0;
 
-    @Column(name = "clubLoseCount")
+    @Column(name = "club_lose_count")
     private int clubLoseCount = 0;
 
-    @Column(name = "individualWinCount")
+    @Column(name = "individual_win_count")
     private int individualWinCount = 0;
 
-    @Column(name = "individualDrawCount")
+    @Column(name = "individual_draw_count")
     private int individualDrawCount = 0;
 
-    @Column(name = "individualLoseCount")
+    @Column(name = "individual_lose_count")
     private int individualLoseCount = 0;
 
     public void updateMatchRecord(final MatchResult result) {
