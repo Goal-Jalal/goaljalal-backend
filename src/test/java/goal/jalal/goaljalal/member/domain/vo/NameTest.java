@@ -56,7 +56,7 @@ class NameTest {
         final String expectedTrimmedName = "John";
 
         // then
-        assertThat(name.getName()).isEqualTo(expectedTrimmedName);
+        assertThat(name.getValue()).isEqualTo(expectedTrimmedName);
     }
 
 }

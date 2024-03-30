@@ -18,13 +18,13 @@ public class Name {
     public static final int MAX_LENGTH = 20;
 
     @Column(name = "name", nullable = false, length = MAX_LENGTH)
-    private String name;
+    private String value;
 
     public Name(final String value) {
         validateNull(value);
         final String trimmedValue = value.trim();
         validateTrim(trimmedValue);
-        this.name = trimmedValue;
+        this.value = trimmedValue;
     }
 
     private void validateNull(final String value) {

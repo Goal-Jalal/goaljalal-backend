@@ -37,7 +37,7 @@ public class MatchRecord {
             case CLUB_WIN:
                 clubWinCount++;
                 break;
-            case CLUB_Draw:
+            case CLUB_DRAW:
                 clubDrawCount++;
                 break;
             case CLUB_LOSE:
@@ -46,7 +46,7 @@ public class MatchRecord {
             case INDIVIDUAL_WIN:
                 individualWinCount++;
                 break;
-            case INDIVIDUAL_Draw:
+            case INDIVIDUAL_DRAW:
                 individualDrawCount++;
                 break;
             case INDIVIDUAL_LOSE:
