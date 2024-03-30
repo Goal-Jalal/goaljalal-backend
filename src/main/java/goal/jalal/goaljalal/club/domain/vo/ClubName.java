@@ -1,6 +1,7 @@
 package goal.jalal.goaljalal.club.domain.vo;
 
-import goal.jalal.goaljalal.club.exception.ClubException;
+import goal.jalal.goaljalal.club.exception.club.NameBlankException;
+import goal.jalal.goaljalal.club.exception.club.NameLengthException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.util.Objects;
@@ -35,11 +36,11 @@ public class ClubName {
 
     private void validateTrim(final String value) {
         if (value.length() > MAX_LENGTH) {
-            throw new ClubException.NameLengthException(MAX_LENGTH, value.length());
+            throw new NameLengthException(MAX_LENGTH, value.length());
         }
 
         if (value.isBlank()) {
-            throw new ClubException.NameBlankException();
+            throw new NameBlankException();
         }
     }
 

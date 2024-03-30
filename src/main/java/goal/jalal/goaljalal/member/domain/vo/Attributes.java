@@ -1,7 +1,8 @@
 package goal.jalal.goaljalal.member.domain.vo;
 
 
-import goal.jalal.goaljalal.member.exception.StatException;
+import goal.jalal.goaljalal.member.exception.stat.StatException;
+import goal.jalal.goaljalal.member.exception.stat.StatRangeException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.util.Arrays;
@@ -76,7 +77,7 @@ public class Attributes {
             .anyMatch(value -> value < MIN_VALUE || value > MAX_VALUE);
 
         if (isOutOfRange) {
-            throw new StatException.StatRangeException();
+            throw new StatRangeException();
         }
     }
 

@@ -1,6 +1,7 @@
 package goal.jalal.goaljalal.member.domain.vo;
 
-import goal.jalal.goaljalal.member.exception.MemberException;
+import goal.jalal.goaljalal.member.exception.member.NameBlankException;
+import goal.jalal.goaljalal.member.exception.member.NameLengthException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.util.Objects;
@@ -35,11 +36,11 @@ public class Name {
 
     private void validateTrim(final String value) {
         if (value.length() > MAX_LENGTH) {
-            throw new MemberException.NameLengthException(MAX_LENGTH, value);
+            throw new NameLengthException(MAX_LENGTH, value);
         }
 
         if (value.isBlank()) {
-            throw new MemberException.NameBlankException();
+            throw new NameBlankException();
         }
     }
 

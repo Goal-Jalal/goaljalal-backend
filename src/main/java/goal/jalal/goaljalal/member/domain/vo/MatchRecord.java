@@ -1,6 +1,6 @@
 package goal.jalal.goaljalal.member.domain.vo;
 
-import goal.jalal.goaljalal.member.exception.MemberMatchHistoryException.UnknownMemberMatchResult;
+import goal.jalal.goaljalal.member.exception.membermatchhistory.MemberMatchHistoryException.UnknownMemberMatchResult;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
