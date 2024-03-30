@@ -2,7 +2,7 @@ package goal.jalal.goaljalal.club.domain.vo;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import goal.jalal.goaljalal.club.exception.clubmatchhistory.ClubMatchHistoryException;
+import goal.jalal.goaljalal.club.exception.clubmatchhistory.ScoreRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class ScoreTest {
 
         //when & then
         assertThatThrownBy(() -> new Score(homeScore, awayScore))
-            .isInstanceOf(ClubMatchHistoryException.ScoreRangeException.class)
+            .isInstanceOf(ScoreRangeException.class)
             .hasMessageContaining("스코어는 0 - 200 사이의 값이어야만 합니다.");
     }
 
@@ -30,7 +30,7 @@ class ScoreTest {
 
         //when & then
         assertThatThrownBy(() -> new Score(homeScore, awayScore))
-            .isInstanceOf(ClubMatchHistoryException.ScoreRangeException.class)
+            .isInstanceOf(ScoreRangeException.class)
             .hasMessageContaining("스코어는 0 - 200 사이의 값이어야만 합니다.");
     }
 
