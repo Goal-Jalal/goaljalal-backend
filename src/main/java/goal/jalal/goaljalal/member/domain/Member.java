@@ -104,4 +104,8 @@ public class Member extends BaseEntity {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public void leave() {
+        this.isDeleted = true;
+    }
+
 }
