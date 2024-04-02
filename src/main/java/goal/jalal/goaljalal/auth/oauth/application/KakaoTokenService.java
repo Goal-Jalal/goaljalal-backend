@@ -36,30 +36,45 @@ public class KakaoTokenService {
     @Value("${oauth.kakao.userinfo_request_url}")
     private String kakaoUserInfoRequestUrl;
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
     private static final String PREFIX_BEARER = "Bearer ";
     private static final String HEADER_TYPE = "Authorization";
+    private static final String ACCEPT_HEADER = "application/json";
+    private static final String GRANT_TYPE_VALUE = "authorization_code";
 
+    public String fetchAccessToken(final String kakaoCode) {
+        final ResponseEntity<String> response = sendAccessTokenRequest(kakaoCode);
+        return parseAccessToken(response);
+    }
 
-    public String fetchAccessToken(String kakaoCode) {
+    private ResponseEntity<String> sendAccessTokenRequest(final String kakaoCode) {
+        final HttpEntity<MultiValueMap<String, String>> requestEntity = createRequestEntity(
+            kakaoCode);
+        return restTemplate.postForEntity(kakaoRequestUrl, requestEntity, String.class);
+    }
+
+    private HttpEntity<MultiValueMap<String, String>> createRequestEntity(String kakaoCode) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.add("Accept", "application/json");
+        headers.add("Accept", ACCEPT_HEADER);
 
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("grant_type", "authorization_code");
+        final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        addRequestParameters(params, kakaoCode);
+
+        return new HttpEntity<>(params, headers);
+    }
+
+    private void addRequestParameters(final MultiValueMap<String, String> params,
+        final String kakaoCode) {
+        params.add("grant_type", GRANT_TYPE_VALUE);
         params.add("client_id", kakaoClientId);
         params.add("redirect_uri", redirectUrl);
         params.add("code", kakaoCode);
         params.add("client_secret", kakaoSecretKey);
+    }
 
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
-
-        ResponseEntity<String> response = restTemplate.postForEntity(kakaoRequestUrl, request,
-            String.class);
-
+    private String parseAccessToken(final ResponseEntity<String> response) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             Map<String, String> responseBody = objectMapper.readValue(response.getBody(),
                 new TypeReference<>() {
                 });
@@ -91,12 +106,11 @@ public class KakaoTokenService {
 
     private OauthMember parsingOauthMember(final ResponseEntity<String> response) {
         try {
-            OauthMember oauthMember = mapper.readValue(response.getBody(), OauthMember.class);
-            return oauthMember;
-        } catch (JsonProcessingException exception) {
-            log.error("kakao oauth data json parsing Exception - ", exception);
-            throw new IllegalArgumentException(exception);
+            return objectMapper.readValue(response.getBody(), OauthMember.class);
+        } catch (JsonProcessingException e) {
+            log.error("kakao oauth data json parsing Exception - ", e);
+            throw new IllegalArgumentException(e);
         }
     }
-
 }
+
