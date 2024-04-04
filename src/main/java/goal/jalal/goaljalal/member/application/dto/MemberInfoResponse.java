@@ -6,6 +6,7 @@ public record MemberInfoResponse(
     Long id,
     Long kakaoId,
     String name,
+    String birthDate,
     String profileImageUrl
 ) {
 
@@ -14,6 +15,7 @@ public record MemberInfoResponse(
             member.getId(),
             member.getKakaoId(),
             member.getName().getValue(),
+            member.getBirthDate().getValue(),
             member.getProfileImageUrl()
         );
     }

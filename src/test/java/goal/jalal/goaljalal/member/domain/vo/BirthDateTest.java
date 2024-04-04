@@ -23,7 +23,7 @@ class BirthDateTest {
         BirthDate newBirthDate = new BirthDate(birthDateNull);
 
         //then
-        assertThat(newBirthDate.getDate()).isNull();
+        assertThat(newBirthDate.getValue()).isNull();
     }
 
     @Test
@@ -57,7 +57,7 @@ class BirthDateTest {
         final String expectedTrimmedBirthDate = "2005-05-05";
 
         //then
-        assertThat(birthDate.getDate()).isEqualTo(expectedTrimmedBirthDate);
+        assertThat(birthDate.getValue()).isEqualTo(expectedTrimmedBirthDate);
     }
 
     @ParameterizedTest

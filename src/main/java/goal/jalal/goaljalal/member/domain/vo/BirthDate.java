@@ -32,17 +32,17 @@ public class BirthDate {
     private static final int MAX_LENGTH = 10;
 
     @Column(name = "birth_date", length = MAX_LENGTH)
-    private String date;
+    private String value;
 
     public BirthDate(final String value) {
         if (Objects.isNull(value)) {
-            this.date = null;
+            this.value = null;
             return;
         }
         final String trimmedValue = value.trim();
         validateTrim(trimmedValue);
         validateDateRegex(trimmedValue);
-        this.date = trimmedValue;
+        this.value = trimmedValue;
     }
 
     private void validateTrim(final String value) {
