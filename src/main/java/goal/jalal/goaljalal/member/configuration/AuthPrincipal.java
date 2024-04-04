@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = ElementType.PARAMETER)
-public @interface UserPrincipal {
+public @interface AuthPrincipal {
 
 }
