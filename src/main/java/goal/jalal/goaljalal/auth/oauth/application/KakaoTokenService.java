@@ -1,6 +1,7 @@
 package goal.jalal.goaljalal.auth.oauth.application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import goal.jalal.goaljalal.auth.oauth.application.dto.AccessToken;
 import goal.jalal.goaljalal.auth.oauth.application.dto.OauthMember;
 import goal.jalal.goaljalal.auth.oauth.configuration.KakaoOauthProperties;
 import goal.jalal.goaljalal.auth.oauth.util.HttpUtils;
@@ -30,8 +31,8 @@ public class KakaoTokenService {
 
     public String fetchAccessToken(final String kakaoCode) {
         final ResponseEntity<String> response = sendAccessTokenRequest(kakaoCode);
-        final String accessToken = jsonUtils.parseAccessToken(response.getBody());
-        return accessToken;
+        final AccessToken accessToken = jsonUtils.extractAccessToken(response.getBody());
+        return accessToken.accessToken();
     }
 
     private ResponseEntity<String> sendAccessTokenRequest(final String kakaoCode) {
@@ -43,7 +44,7 @@ public class KakaoTokenService {
 
     public OauthMember getOauthMember(final String accessToken) {
         ResponseEntity<String> response = fetchOauthMemberInfo(accessToken);
-        OauthMember oauthMember = jsonUtils.parsingOauthMember(response.getBody());
+        OauthMember oauthMember = jsonUtils.extractOauthMember(response.getBody());
         return oauthMember;
     }
 
