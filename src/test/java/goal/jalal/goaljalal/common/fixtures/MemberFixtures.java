@@ -12,6 +12,13 @@ public class MemberFixtures {
     public static final Long SARA_KAKAO_ID = 254385738199212L;
 
     /**
+     * MEMBER_ID
+     */
+    public static final Long JOHN_MEMBER_ID = 1341534234123L;
+    public static final Long MICHAEL_MEMBER_ID = 4839274582123L;
+    public static final Long SARA_MEMBER_ID = 254385738199212L;
+
+    /**
      * NAME
      */
     public static final String JOHN_NAME = "John";

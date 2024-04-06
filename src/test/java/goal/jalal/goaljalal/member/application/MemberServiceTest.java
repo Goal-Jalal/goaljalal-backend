@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import goal.jalal.goaljalal.common.ServiceTest;
 import goal.jalal.goaljalal.common.fixtures.MemberFixtures;
 import goal.jalal.goaljalal.member.application.dto.MemberInfoResponse;
-import goal.jalal.goaljalal.member.configuration.dto.MemberKakaoIdDto;
+import goal.jalal.goaljalal.member.configuration.dto.MemberIdDto;
 import goal.jalal.goaljalal.member.domain.Member;
 import goal.jalal.goaljalal.member.domain.MemberRepository;
 import goal.jalal.goaljalal.member.exception.member.MemberNotFoundException;
@@ -37,7 +37,7 @@ class MemberServiceTest extends ServiceTest {
 
             //when
             final MemberInfoResponse response = memberService.getMemberInformation(
-                new MemberKakaoIdDto(REGISTERED_MEMBER.getKakaoId()));
+                new MemberIdDto(REGISTERED_MEMBER.getKakaoId()));
 
             // then
             assertSoftly(softly -> {
@@ -58,7 +58,7 @@ class MemberServiceTest extends ServiceTest {
 
             //when & then
             assertThatThrownBy(() -> memberService.getMemberInformation(
-                new MemberKakaoIdDto(NON_REGISTER_MEMBER.getKakaoId())))
+                new MemberIdDto(NON_REGISTER_MEMBER.getKakaoId())))
                 .isInstanceOf(MemberNotFoundException.class)
                 .hasMessageContaining("조회한 멤버가 존재하지 않습니다.");
         }
@@ -76,7 +76,7 @@ class MemberServiceTest extends ServiceTest {
 
             // when & then
             assertDoesNotThrow(() -> memberService.leaveMember(
-                new MemberKakaoIdDto(REGISTERED_MEMBER.getKakaoId())));
+                new MemberIdDto(REGISTERED_MEMBER.getKakaoId())));
         }
 
         @Test
@@ -87,7 +87,7 @@ class MemberServiceTest extends ServiceTest {
 
             // when & then
             assertThatThrownBy(() -> memberService.leaveMember(
-                new MemberKakaoIdDto(NON_REGISTERED_MEMBER.getKakaoId())))
+                new MemberIdDto(NON_REGISTERED_MEMBER.getKakaoId())))
                 .isInstanceOf(MemberNotFoundException.class)
                 .hasMessageContaining("조회한 멤버가 존재하지 않습니다.");
         }

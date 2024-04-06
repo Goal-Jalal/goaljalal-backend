@@ -24,7 +24,7 @@ public class AuthenticationException extends RuntimeException {
 
         public AccessTokenClaimNullException(final String token) {
             super(
-                String.format("인증 실패(JWT 액세스 토큰 Payload KakaoId 누락) - request info { token : %s }",
+                String.format("인증 실패(JWT 액세스 토큰 Payload MemberId 누락) - request info { token : %s }",
                     token));
         }
     }
@@ -40,10 +40,11 @@ public class AuthenticationException extends RuntimeException {
 
         public RefreshTokenClaimNullException(final String token) {
             super(
-                String.format("인증 실패(JWT 리프레시 토큰 Payload KakaoId 누락) - request info { token : %s }",
+                String.format(
+                    "인증 실패(JWT 리프레시 토큰 Payload MemberId 누락) - request info { token : %s }",
                     token));
         }
     }
 
-    
+
 }

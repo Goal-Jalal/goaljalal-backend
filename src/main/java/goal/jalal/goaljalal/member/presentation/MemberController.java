@@ -3,7 +3,7 @@ package goal.jalal.goaljalal.member.presentation;
 import goal.jalal.goaljalal.member.application.MemberService;
 import goal.jalal.goaljalal.member.application.dto.MemberInfoResponse;
 import goal.jalal.goaljalal.member.configuration.AuthPrincipal;
-import goal.jalal.goaljalal.member.configuration.dto.MemberKakaoIdDto;
+import goal.jalal.goaljalal.member.configuration.dto.MemberIdDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,19 +21,19 @@ public class MemberController {
 
     @GetMapping
     public ResponseEntity<MemberInfoResponse> getMyInformation(
-        @AuthPrincipal final MemberKakaoIdDto memberKakaoIdDto
+        @AuthPrincipal final MemberIdDto memberIdDto
     ) {
         final MemberInfoResponse memberInfoResponse = memberService.getMemberInformation(
-            memberKakaoIdDto);
+            memberIdDto);
 
         return ResponseEntity.ok(memberInfoResponse);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> deleteAccount(
-        @AuthPrincipal final MemberKakaoIdDto memberKakaoIdDto
+        @AuthPrincipal final MemberIdDto memberIdDto
     ) {
-        memberService.leaveMember(memberKakaoIdDto);
+        memberService.leaveMember(memberIdDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
