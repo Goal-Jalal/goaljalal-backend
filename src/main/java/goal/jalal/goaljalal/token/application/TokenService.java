@@ -22,9 +22,9 @@ public class TokenService {
         if (existRefreshToken(refreshToken)) {
             throw new TokenNotFoundException(refreshToken);
         }
-        final Long kakaoId = jwtTokenProvider.extractKakaoIdFromRefreshToken(refreshToken);
-        final String accessToken = jwtTokenProvider.generateAccessToken(kakaoId);
-        log.info("AccessToken 재발급 - 재발급 받은 사용자 카카오ID : {}", kakaoId);
+        final Long memberId = jwtTokenProvider.extractMemberIdFromAccessToken(refreshToken);
+        final String accessToken = jwtTokenProvider.generateAccessToken(memberId);
+        log.info("AccessToken 재발급 - 재발급 받은 사용자 memberId : {}", memberId);
 
         return new TokenResponse(accessToken);
     }

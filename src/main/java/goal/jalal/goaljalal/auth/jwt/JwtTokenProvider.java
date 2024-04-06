@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtTokenProvider {
 
-    private static final String ID_KEY = "kakaoId";
+    private static final String ID_KEY = "MemberId";
 
     @Value("${jwt.access.secret}")
     private String jwtAccessTokenSecret;
@@ -42,14 +42,14 @@ public class JwtTokenProvider {
             .compact();
     }
 
-    public Long extractKakaoIdFromAccessToken(final String token) {
+    public Long extractMemberIdFromAccessToken(final String token) {
         validateAccessToken(token);
         final Jws<Claims> claimsJws = getAccessTokenParser().parseClaimsJws(token);
-        Long extractedKakaoId = claimsJws.getBody().get(ID_KEY, Long.class);
-        if (extractedKakaoId == null) {
+        Long extractedMemberId = claimsJws.getBody().get(ID_KEY, Long.class);
+        if (extractedMemberId == null) {
             throw new AuthenticationException.AccessTokenClaimNullException(token);
         }
-        return extractedKakaoId;
+        return extractedMemberId;
     }
 
     private void validateAccessToken(final String token) {
@@ -87,14 +87,14 @@ public class JwtTokenProvider {
             .compact();
     }
 
-    public Long extractKakaoIdFromRefreshToken(final String token) {
+    public Long extractMemberIdFromRefreshToken(final String token) {
         validateRefreshToken(token);
         final Jws<Claims> claimsJws = getRefreshTokenParser().parseClaimsJws(token);
-        Long extractedKakaoId = claimsJws.getBody().get(ID_KEY, Long.class);
-        if (extractedKakaoId == null) {
+        Long extractedMemberId = claimsJws.getBody().get(ID_KEY, Long.class);
+        if (extractedMemberId == null) {
             throw new AuthenticationException.RefreshTokenClaimNullException(token);
         }
-        return extractedKakaoId;
+        return extractedMemberId;
     }
 
     private void validateRefreshToken(final String token) {

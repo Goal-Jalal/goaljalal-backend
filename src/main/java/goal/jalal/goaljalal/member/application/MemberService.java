@@ -1,7 +1,7 @@
 package goal.jalal.goaljalal.member.application;
 
 import goal.jalal.goaljalal.member.application.dto.MemberInfoResponse;
-import goal.jalal.goaljalal.member.configuration.dto.MemberKakaoIdDto;
+import goal.jalal.goaljalal.member.configuration.dto.MemberIdDto;
 import goal.jalal.goaljalal.member.domain.Member;
 import goal.jalal.goaljalal.member.domain.MemberRepository;
 import goal.jalal.goaljalal.member.exception.member.MemberNotFoundException;
@@ -19,16 +19,16 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional(readOnly = true)
-    public MemberInfoResponse getMemberInformation(final MemberKakaoIdDto memberKakaoIdDto) {
-        final Long memberKakaoId = memberKakaoIdDto.kakaoId();
+    public MemberInfoResponse getMemberInformation(final MemberIdDto memberIdDto) {
+        final Long memberKakaoId = memberIdDto.kakaoId();
 
         final Member member = memberRepository.findByKakaoId(memberKakaoId)
             .orElseThrow(() -> new MemberNotFoundException(memberKakaoId));
         return MemberInfoResponse.of(member);
     }
 
-    public void leaveMember(final MemberKakaoIdDto memberKakaoIdDto) {
-        final Long memberKakaoId = memberKakaoIdDto.kakaoId();
+    public void leaveMember(final MemberIdDto memberIdDto) {
+        final Long memberKakaoId = memberIdDto.kakaoId();
 
         final Member member = memberRepository.findByKakaoId(memberKakaoId)
             .orElseThrow(() -> new MemberNotFoundException(memberKakaoId));

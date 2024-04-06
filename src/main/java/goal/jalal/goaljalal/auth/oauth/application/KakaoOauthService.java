@@ -34,12 +34,12 @@ public class KakaoOauthService {
 
         final Member member = createMemberIfNotExist(oauthMember);
 
-        final String accessToken = jwtTokenProvider.generateAccessToken(oauthMember.kakaoId());
-        final String refreshToken = jwtTokenProvider.generateAccessToken(oauthMember.kakaoId());
+        final String accessToken = jwtTokenProvider.generateAccessToken(member.getId());
+        final String refreshToken = jwtTokenProvider.generateAccessToken(member.getId());
 
         saveOrUpdateRefreshToken(member, refreshToken);
 
-        log.info("토큰 생성 - 사용자 카카오 아이디 : {}", oauthMember.kakaoId());
+        log.info("토큰 생성 - 사용자 아이디 : {}", oauthMember.kakaoId());
         return new TokenResponse(accessToken, refreshToken);
     }
 

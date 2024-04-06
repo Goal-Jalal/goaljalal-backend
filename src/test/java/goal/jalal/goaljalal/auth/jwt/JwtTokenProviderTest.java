@@ -1,6 +1,7 @@
 package goal.jalal.goaljalal.auth.jwt;
 
 import static goal.jalal.goaljalal.common.fixtures.MemberFixtures.JOHN_KAKAO_ID;
+import static goal.jalal.goaljalal.common.fixtures.MemberFixtures.JOHN_MEMBER_ID;
 import static goal.jalal.goaljalal.common.fixtures.TokenFixtures.MALFORMED_JWT_TOKEN;
 import static goal.jalal.goaljalal.common.fixtures.TokenFixtures.MISSING_CLAIM_ACCESS_TOKEN;
 import static goal.jalal.goaljalal.common.fixtures.TokenFixtures.MISSING_CLAIM_REFRESH_TOKEN;
@@ -29,39 +30,39 @@ class JwtTokenProviderTest {
         @DisplayName("엑세스 토큰을 정상적으로 생성합니다.")
         void success_Generate_AccessToken() {
             //given
-            final Long kakaoId = JOHN_KAKAO_ID;
+            final Long MemberId = JOHN_KAKAO_ID;
 
             //when
-            final String accessToken = jwtTokenProvider.generateAccessToken(kakaoId);
+            final String accessToken = jwtTokenProvider.generateAccessToken(MemberId);
 
             //then
             assertThat(accessToken).isNotNull();
         }
 
         @Test
-        @DisplayName("엑세스 토큰에서 KAKAO_ID가 추출되어야 합니다.")
-        void success_Extract_KakaoId_From_AccessToken() {
+        @DisplayName("엑세스 토큰에서 Member_ID가 추출되어야 합니다.")
+        void success_Extract_MemberId_From_AccessToken() {
             //given
-            final Long kakaoId = JOHN_KAKAO_ID;
-            final String accessToken = jwtTokenProvider.generateAccessToken(kakaoId);
+            final Long MemberId = JOHN_MEMBER_ID;
+            final String accessToken = jwtTokenProvider.generateAccessToken(MemberId);
 
             //when
-            final Long extractedKakaoId = jwtTokenProvider.extractKakaoIdFromAccessToken(
+            final Long extractedMemberId = jwtTokenProvider.extractMemberIdFromAccessToken(
                 accessToken);
 
             //then
-            assertThat(extractedKakaoId).isEqualTo(kakaoId);
+            assertThat(extractedMemberId).isEqualTo(MemberId);
         }
 
         @Test
         @DisplayName("엑세스 토큰 추출 시 JWT 형식이 다른 토큰 이면 InvalidAccessTokenException 예외가 발생해야 합니다.")
-        void extract_KakaoId_From_AccessToken_Invalid_ExceptionThrown() {
+        void extract_MemberId_From_AccessToken_Invalid_ExceptionThrown() {
             //given
             final String malFormedJwtToken = MALFORMED_JWT_TOKEN;
 
             //when & then
             assertThatThrownBy(
-                () -> jwtTokenProvider.extractKakaoIdFromAccessToken(malFormedJwtToken))
+                () -> jwtTokenProvider.extractMemberIdFromAccessToken(malFormedJwtToken))
                 .isInstanceOf(AuthenticationException.InvalidAccessTokenException.class)
                 .hasMessageContaining(
                     String.format("인증 실패(잘못된 액세스 토큰) - request info { token : %s }",
@@ -69,17 +70,17 @@ class JwtTokenProviderTest {
         }
 
         @Test
-        @DisplayName("엑세스 토큰 추출 시 KakaoId 클레임이 없는 토큰이면 AccessTokenClaimNullException 예외가 발생해야 합니다.")
-        void extract_KakaoId_From_AccessToken_ClaimNull_ExceptionThrown() {
+        @DisplayName("엑세스 토큰 추출 시 MemberId 클레임이 없는 토큰이면 AccessTokenClaimNullException 예외가 발생해야 합니다.")
+        void extract_MemberId_From_AccessToken_ClaimNull_ExceptionThrown() {
             // given
             String missingClaimToken = MISSING_CLAIM_ACCESS_TOKEN;
 
             // when & then
             assertThatThrownBy(
-                () -> jwtTokenProvider.extractKakaoIdFromAccessToken(missingClaimToken))
+                () -> jwtTokenProvider.extractMemberIdFromAccessToken(missingClaimToken))
                 .isInstanceOf(AuthenticationException.AccessTokenClaimNullException.class)
                 .hasMessageContaining(String.format(
-                    "인증 실패(JWT 액세스 토큰 Payload KakaoId 누락) - request info { token : %s }",
+                    "인증 실패(JWT 액세스 토큰 Payload MemberId 누락) - request info { token : %s }",
                     missingClaimToken));
         }
     }
@@ -92,39 +93,39 @@ class JwtTokenProviderTest {
         @DisplayName("리프레시 토큰을 정상적으로 생성합니다.")
         void success_Generate_AccessToken() {
             //given
-            final Long kakaoId = JOHN_KAKAO_ID;
+            final Long MemberId = JOHN_MEMBER_ID;
 
             //when
-            final String accessToken = jwtTokenProvider.generateRefreshToken(kakaoId);
+            final String accessToken = jwtTokenProvider.generateRefreshToken(MemberId);
 
             //then
             assertThat(accessToken).isNotNull();
         }
 
         @Test
-        @DisplayName("리프레시 토큰에서 KAKAO_ID가 추출되어야 합니다.")
-        void success_Extract_KakaoId_From_RefreshToken() {
+        @DisplayName("리프레시 토큰에서 Member_ID가 추출되어야 합니다.")
+        void success_Extract_MemberId_From_RefreshToken() {
             //given
-            final Long kakaoId = JOHN_KAKAO_ID;
-            final String accessToken = jwtTokenProvider.generateRefreshToken(kakaoId);
+            final Long MemberId = JOHN_MEMBER_ID;
+            final String accessToken = jwtTokenProvider.generateRefreshToken(MemberId);
 
             //when
-            final Long extractedKakaoId = jwtTokenProvider.extractKakaoIdFromRefreshToken(
+            final Long extractedMemberId = jwtTokenProvider.extractMemberIdFromRefreshToken(
                 accessToken);
 
             //then
-            assertThat(extractedKakaoId).isEqualTo(kakaoId);
+            assertThat(extractedMemberId).isEqualTo(MemberId);
         }
 
         @Test
         @DisplayName("리프레시 토큰 추출 시 JWT 형식이 다른 토큰 이면 InvalidRefreshTokenException 예외가 발생해야 합니다.")
-        void extract_KakaoId_From_RefreshToken_Invalid_ExceptionThrown() {
+        void extract_MemberId_From_RefreshToken_Invalid_ExceptionThrown() {
             //given
             final String malFormedJwtToken = MALFORMED_JWT_TOKEN;
 
             //when & then
             assertThatThrownBy(
-                () -> jwtTokenProvider.extractKakaoIdFromRefreshToken(malFormedJwtToken))
+                () -> jwtTokenProvider.extractMemberIdFromRefreshToken(malFormedJwtToken))
                 .isInstanceOf(AuthenticationException.InvalidRefreshTokenException.class)
                 .hasMessageContaining(
                     String.format("인증 실패(잘못된 리프레시 토큰) - request info { token : %s }",
@@ -132,17 +133,17 @@ class JwtTokenProviderTest {
         }
 
         @Test
-        @DisplayName("리프레시 토큰 추출 시 KakaoId 클레임이 없는 토큰이면 RefreshTokenClaimNullException 예외가 발생해야 합니다.")
-        void extract_KakaoId_From_RefreshToken_ClaimNull_ExceptionThrown() {
+        @DisplayName("리프레시 토큰 추출 시 MemberId 클레임이 없는 토큰이면 RefreshTokenClaimNullException 예외가 발생해야 합니다.")
+        void extract_MemberId_From_RefreshToken_ClaimNull_ExceptionThrown() {
             // given
             String missingClaimToken = MISSING_CLAIM_REFRESH_TOKEN;
 
             // when & then
             assertThatThrownBy(
-                () -> jwtTokenProvider.extractKakaoIdFromRefreshToken(missingClaimToken))
+                () -> jwtTokenProvider.extractMemberIdFromRefreshToken(missingClaimToken))
                 .isInstanceOf(AuthenticationException.RefreshTokenClaimNullException.class)
                 .hasMessageContaining(String.format(
-                    "인증 실패(JWT 리프레시 토큰 Payload KakaoId 누락) - request info { token : %s }",
+                    "인증 실패(JWT 리프레시 토큰 Payload MemberId 누락) - request info { token : %s }",
                     missingClaimToken));
         }
 

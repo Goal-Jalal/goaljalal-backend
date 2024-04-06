@@ -1,7 +1,7 @@
 package goal.jalal.goaljalal.member.configuration;
 
 import goal.jalal.goaljalal.auth.jwt.JwtTokenProvider;
-import goal.jalal.goaljalal.member.configuration.dto.MemberKakaoIdDto;
+import goal.jalal.goaljalal.member.configuration.dto.MemberIdDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
@@ -28,8 +28,8 @@ public class MemberArgumentResolver implements HandlerMethodArgumentResolver {
         NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         final String authorization = webRequest.getHeader(HttpHeaders.AUTHORIZATION);
         final String jwtToken = authorization.split(" ")[TOKEN_INDEX];
-        Long kakaoId = jwtTokenProvider.extractKakaoIdFromAccessToken(jwtToken);
-        return new MemberKakaoIdDto(kakaoId);
+        Long memberId = jwtTokenProvider.extractMemberIdFromAccessToken(jwtToken);
+        return new MemberIdDto(memberId);
     }
 }
 

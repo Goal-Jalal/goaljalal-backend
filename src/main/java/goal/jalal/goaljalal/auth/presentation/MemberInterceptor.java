@@ -22,7 +22,7 @@ public class MemberInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
         Object handler) throws Exception {
         final String accessToken = jwtTokenExtractor.extractAccessToken(request);
-        Long kakaoId = jwtTokenProvider.extractKakaoIdFromAccessToken(accessToken);
+        Long kakaoId = jwtTokenProvider.extractMemberIdFromAccessToken(accessToken);
         validateMemberExist(kakaoId);
         return true;
     }
